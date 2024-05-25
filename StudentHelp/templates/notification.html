@@ -1,0 +1,74 @@
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-xl-5 col-md-12">
+                <div class="card user-activity-card">
+                    <div class="card-header">
+                        <h5>Notifications</h5>
+                 
+                    </div>
+                    {% for comment in comments %}
+                    {% if comment.poste.user.email == request.session.user and comment.user.email != request.session.user %}
+                        <a href="{% url 'detail_post' comment.poste.pk %}">
+                            <div class="card-block">
+                                <div class="row m-b-25">
+                                    <div class="col-auto p-r-0">
+                                        <div class="u-img">
+                                            <img src="{{ comment.poste.image.url }}" alt="user image" class="img-radius cover-img">
+                                            <img src="https://img.icons8.com/ultraviolet/40/000000/active-state.png" alt="user image" class="img-radius profile-img">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <h6 class="m-b-5">{{ comment.user.nom }} commented on your post</h6>   
+                                        <p class="text-muted m-b-0">The comment: {{ comment.com }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    {% endif %} 
+                {% endfor %}
+                
+
+
+                    {% for l in likes %}
+                    {% if l.poste.user.email == request.session.user and l.user.email != request.session.user %}
+                    <a href="{% url 'detail_post' l.poste.pk %}">
+                    <div class="card-block">
+                        <div class="row m-b-25">
+                            
+                            <div class="col-auto p-r-0">
+                                <div class="u-img"> <img src="{{ l.poste.image.url }}" alt="user image" class="img-radius cover-img"> <img src="https://img.icons8.com/ultraviolet/40/000000/active-state.png" alt="user image" class="img-radius profile-img"> </div>
+                            </div>
+
+
+                            <div class="col">
+                              <h6 class="m-b-5">{{l.user.nom}}   liked your Post </h6>                          
+                              
+                            </div>
+                        </div>
+                        
+                                      
+                    </div>
+                </a>
+                    {% endif %} 
+                    {% endfor %}
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .padding{padding: 3rem !important}body{background-color: #f9f9fa}.card{border-radius: 5px;-webkit-box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);border: none;margin-bottom: 30px}.card .card-header{background-color: transparent;border-bottom: none;padding: 25px 20px}.card-block{padding: 1.25rem;margin-top:-40px}.card .card-header h5{margin-bottom: 0;color: #505458;font-size: 14px;font-weight: 600;display: inline-block;margin-right: 10px;line-height: 1.4}.text-muted{margin-bottom:0px}.user-activity-card .u-img .cover-img{width: 60px;height: 60px}.m-b-25{margin-top:20px}.user-activity-card .u-img .profile-img{width: 20px;height: 20px;position: absolute;bottom: -5px;right: -5px}.img-radius{border-radius: 5px}.user-activity-card .u-img{position: relative}.m-b-5{margin-bottom: 5px}h6{font-size: 14px}.card .card-block p{line-height: 25px}.text-muted{color: #919aa3 !important}.card .card-block p{line-height: 25px}.text-muted{color: #919aa3 !important}.m-r-10{margin-right: 4px}.feather{font-family: 'feather' !important;speak: none;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale}.text-center{margin-top: 15px}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+

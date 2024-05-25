@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommandation Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+        }
+        .image-container {
+            flex: 1;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+        form {
+            flex: 1;
+            margin: 10px;
+            padding: 20px; /* Increased padding for more spacing */
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ccc;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            max-width: 600px; /* Increased max-width for a larger form */
+        }
+        #event-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        label,
+        input,
+        select,
+        button {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px; /* Increased space between elements */
+        }
+        input,
+        select,
+        textarea {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 20px; /* Increased margin-bottom for more spacing */
+        }
+        button {
+            background-color: #5cb85c;
+            color: white;
+            padding: 12px 24px; /* Slightly larger padding for the button */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px; /* Increased font size for better readability */
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        h2 {
+            font-size: 2em;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="file"],
+        textarea {
+            border: none;
+            border-bottom: 1px solid grey;
+            background-color: transparent;
+            padding: 8px 0; /* Adjusted padding */
+            font-size: 16px; /* Increased font size for better readability */
+        }
+    </style>
+</head>
+<body>
+    <h2>Votre Recommandation</h2>
+    <div class="container">
+        <div class="image-container">
+            <img src="../../../../media/post_images/rec.jpg" alt="Event Image" id="event-image" style="height: 480px;">
+        </div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="type">Type:</label>
+            <select name="type" id="type">
+                <option value="0">Offre</option>
+                <option value="1">Demande</option>
+            </select>
+            
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date">
+            
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image">
+            
+            <label for="texte">Text:</label>
+            <textarea id="texte" name="texte"></textarea>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        window.onload = function() {
+            document.querySelector('form').style.opacity = 1;
+            document.querySelector('.image-container').style.opacity = 1;
+        };
+    </script>
+</body>
+</html>

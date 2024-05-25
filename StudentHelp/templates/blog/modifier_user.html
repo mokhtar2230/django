@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier Profil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9; /* Light grey background */
+            color: #333; /* Dark grey text */
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ff7f50; /* Light orange header */
+        }
+
+        form {
+            background-color: #fff; /* White form background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #ff7f50; /* Light orange button */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #ff6347; /* Darker shade of orange on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Modifier Profil</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="id_nom">Nom:</label>
+        {{ form.nom }}
+        <label for="id_prenom">Prénom:</label>
+        {{ form.prenom }}
+        <label for="id_telephone">Téléphone:</label>
+        {{ form.telephone }}
+        <label for="id_email">Email:</label>
+        {{ form.email }}
+        <label for="id_image">Image:</label>
+        {{ form.image }}
+        <label for="id_password">Mot de passe:</label>
+        {{ form.password }}
+        <button type="submit">Enregistrer</button>
+    </form>
+</body>
+</html>

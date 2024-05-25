@@ -1,0 +1,86 @@
+<!-- supprimer_poste.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Deletion</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        /* Add some custom styling to make it look modern and professional */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7; /* light gray background */
+        }
+        .container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        p {
+            color: #666;
+            margin-bottom: 40px;
+        }
+        .btn-delete {
+            background-color: #e74c3c; /* red button */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-delete:hover {
+            background-color: #c0392b; /* darker red on hover */
+        }
+        .btn-cancel {
+            background-color: #337ab7; /* blue button */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-cancel:hover {
+            background-color: #23527c; /* darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Confirm Deletion</h1>
+        <p>Are you sure you want to delete this post?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-delete">Yes, Delete</button>
+            <a href="/profil" class="btn-cancel">Cancel</a>
+        </form>
+    </div>
+
+    <!-- Add some animations using JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".btn-delete").hover(function() {
+                $(this).animate({ opacity: 0.8 }, 200);
+            }, function() {
+                $(this).animate({ opacity: 1 }, 200);
+            });
+            $(".btn-cancel").hover(function() {
+                $(this).animate({ opacity: 0.8 }, 200);
+            }, function() {
+                $(this).animate({ opacity: 1 }, 200);
+            });
+        });
+    </script>
+</body>
+</html>

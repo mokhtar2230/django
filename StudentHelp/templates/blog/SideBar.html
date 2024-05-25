@@ -1,0 +1,79 @@
+{% load static %}
+<br>
+<br>
+<br>
+<hr>
+<section class="side-menu">
+  <b style="font-family: 'Pacifico', cursive;">The types of posts available are :</b><br>
+  <ul style=" display: inline-block;" class="menu">
+    <br>
+    <li  class="menu"></li>
+    <li></li>
+    <li class="menu" ><a class="button-54 " style=" color: BLACK; width:  270PX;" href="{% url 'Transports' %}" >Transports</a></li><br>
+    <li class="menu"><a class="button-54 " style=" color:BLACK ;  width:  270PX; " href="{% url 'Stage' %}" >Stage</a></li><br>
+   <li class="menu"><a   class="button-54 " style=" color: BLACK; width:  270PX;" href="{% url 'Logement' %}" >Logement</a></li><br>
+   <li class="menu" ><a  class="button-54 " style=" color: BLACK;  width:  270PX;" href="{% url 'Recommandation' %}" >Recommandations</a></li><br>
+  <li class="menu"><a  class="button-54 " style=" color: BLACK;  width:  270PX;"  href=" {% url 'Evenement'  %}" class="menu__suggestions">Evenements</a></li><br>
+  <li class="menu"><a class="button-54 " style=" color: BLACK; width:  270PX;" href=" {% url 'EvenClub' %}" class="menu__suggestions">Evenements clubs</a></li><br>
+  <li class="menu"><a class="button-54 " style=" color: BLACK; width:  270PX;" href=" {% url 'EvenSocial' %}" class="menu__suggestions">Evenements sociaux</a></li><br>
+  </ul>
+</section>
+
+
+<style>
+
+
+  .menu li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  
+}
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align items horizontally */
+  padding: 0; /* Remove default padding */
+}
+
+
+
+
+
+
+
+
+
+  
+
+/* CSS */
+.button-54 {
+  Font-family: 'Pacifico', cursive;
+  width: 200px; /* bech walew kadkad */
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-decoration: none;
+ 
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-54:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+@media (min-width: 768px) {
+  .button-54 {
+    padding: 0.25em 0.75em;
+  }
+}
+</style>

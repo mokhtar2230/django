@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+        }
+        .image-container {
+            flex: 1;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+        form {
+            flex: 1;
+            margin: 10px;
+            padding: 10px; /* Adjusted padding to reduce height */
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ccc;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            max-width: 350px; /* Added to limit the width of the form */
+        }
+        #event-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        label,
+        input,
+        select,
+        button {
+            display: block;
+            width: 100%;
+            margin-bottom: 5px; /* Reduced space between elements */
+        }
+        input,
+        select,
+        textarea {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        h2 {
+            font-size: 2em;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px; /* Adjusted margin */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="file"],
+        textarea {
+            border: none;
+            border-bottom: 1px solid grey;
+            background-color: transparent;
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>Stage Form</h2>
+    <div class="container">
+        <div class="image-container">
+            <img src="../../../../media/post_images/s.jpg" alt="Event Image" id="event-image" style="height: 620PX;">
+        </div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="type">Type :</label>
+            <select name="type" id="type" required>
+                <option value="0">Offre</option>
+                <option value="1">Demande</option>
+            </select>
+
+            <label for="date">Date:</label>
+            <input type="date" name="date" id="date" required>
+
+            <label for="image">Image:</label>
+            <input type="file" name="image" id="image">
+
+            <label for="typeStg">Type :</label>
+            <select name="typeStg" id="typeStg" required>
+                <option value="0">ouvrier</option>
+                <option value="1">technicien</option>
+                <option value="2">PFE</option>
+            </select>
+
+            <label for="societe">Société:</label>
+            <input type="text" name="societe" id="societe" required>
+
+            <label for="duree">Durée:</label>
+            <input type="text" name="duree" id="duree" required>
+
+            <label for="sujet">Sujet:</label>
+            <input type="text" name="sujet" id="sujet" required>
+
+            <label for="contactinfo">Contact Info:</label>
+            <input type="text" name="contactinfo" id="contactinfo" required>
+
+            <label for="specialite">Spécialité:</label>
+            <input type="text" name="specialite" id="specialite" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        window.onload = function() {
+            document.querySelector('form').style.opacity = 1;
+            document.querySelector('.image-container').style.opacity = 1;
+        };
+    </script>
+</body>
+</html>

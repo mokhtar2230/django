@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-ABC123..." crossorigin="anonymous" />
+		
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+
+
+
+:root {
+    font-size: 10px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Open Sans", Arial, sans-serif;
+    min-height: 100vh;
+
+  
+}
+
+
+
+
+
+
+/* Profile Section */
+
+.profile {
+    padding: 5rem 0;
+}
+
+
+.profile-image {
+  
+  
+    display: flex;
+    justify-content: center;
+    
+    
+}
+
+.profile-image img {
+    border-radius: 50%;
+}
+
+
+
+
+
+.profile-edit-btn {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    border: 0.1rem solid #dbdbdb;
+    border-radius: 0.3rem;
+    padding: 0 2.4rem;
+    margin-left: 2rem;
+}
+
+.profile-settings-btn {
+    font-size: 2rem;
+    margin-left: 1rem;
+}
+
+.profile-stats {
+    margin-top: 2.3rem;
+}
+
+
+
+
+
+
+/* Gallery Section */
+
+
+.gallery-item {
+	position: relative;
+	flex: 1 0 auto; /* Allow flexibility in width */
+	margin: 1rem;
+	color: #fff;
+	cursor: pointer;
+	width: 400px; /* Set width to match the image width */
+	height: 400px; /* Set height to match the image height */
+}
+
+.gallery-item:hover .gallery-item-info,
+.gallery-item:focus .gallery-item-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item-info {
+    display: none;
+}
+
+.gallery-item-info li {
+    display: inline-block;
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+.gallery-item-likes {
+    margin-right: 2.2rem;
+}
+
+.gallery-item-type {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2.5rem;
+    text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+}
+
+
+/* Loader */
+
+
+
+/* Media Query */
+
+
+
+    .profile::after {
+        display: none;
+    }
+
+    
+
+    .profile-image img {
+        width: 7.7rem;
+    }
+
+    .profile-user-settings {
+        flex-basis: calc(100% - 10.7rem);
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+    }
+
+    
+  
+
+
+/* Spinner Animation */
+
+@keyframes loader {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/*
+
+The following code will only run if your browser supports CSS grid.
+
+Remove or comment-out the code block below to see how the browser will fall-back to flexbox & floated styling. 
+
+*/
+
+@supports (display: grid) {
+    .profile {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: repeat(3, auto);
+        grid-column-gap: 3rem;
+        align-items: center;
+    }
+
+    .profile-image {
+        grid-row: 1 / -1;
+    }
+
+    
+
+  
+    @media (max-width: 40rem) {
+        .profile {
+            grid-template-columns: auto 1fr;
+            grid-row-gap: 1.5rem;
+        }
+
+        .profile-image {
+            grid-row: 1 / 2;
+        }
+
+        .profile-user-settings {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-gap: 1rem;
+        }
+
+        .profile-edit-btn,
+        .profile-stats,
+        .profile-bio {
+            grid-column: 1 / -1;
+        }
+
+        .profile-user-settings,
+        .profile-edit-btn,
+        .profile-settings-btn,
+        .profile-bio,
+        .profile-stats {
+            margin: 0;
+        }
+    }
+}
+/* Gallery Section */
+
+.gallery {
+	display: flex;
+	flex-wrap: wrap;
+	margin: -1rem;
+	padding-bottom: 3rem;
+}
+
+.gallery-item {
+	flex: 0 0 calc(50% - 2rem);
+	margin: 1rem;
+	color: #fff;
+	cursor: pointer;
+}
+
+@media screen and (max-width: 40rem) {
+	.gallery-item {
+			flex: 0 0 calc(100% - 2rem);
+	}
+}
+
+.gallery-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+
+</style>
+
+</head>
+<body>
+    <header>
+        <a href="{% url 'home' %}" style="display: flex; align-items: center; text-decoration: none; color: black;">
+            <i class="fas fa-home"></i>
+            <span style="margin-left: 10px; color: black;">Home</span>
+        </a>
+        <div class="container">
+            <div class="profile">
+                <div class="profile-image" >
+                    <img src="{{ user.image.url }}" alt="" style="width: 120px; height: 120px;">
+                </div>
+                <div class="profile-user-settings">
+                    <h1 class="profile-user-name">{{ user.nom }} {{ user.prenom }}</h1>
+                    <button class="btn profile-edit-btn" onclick="window.location.href='{% url 'Modifierprofil' pk=user.pk %}'">Edit Profile</button>
+                    <button class="btn profile-settings-btn" aria-label="profile settings">
+                        <i class="fas fa-cog" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="gallery" >
+                {% for post in poste %}
+                <div class="gallery-item" tabindex="0" data-post-id="{{ post.pk }}" >
+                    <img src="{{ post.image.url }}" class="gallery-image" alt="" >
+                    <div class="gallery-item-info">
+                        <ul>
+                            <li class="gallery-item-likes"><span class="visually-hidden"></span><i class="fas fa-heart" aria-hidden="true"></i> {{ post.count_likes }} Likes</li>
+                            <li class="gallery-item-comments"><span class="visually-hidden"></span><i class="fas fa-comment" aria-hidden="true"></i> {{ post.count_comments }} Comments</li>
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="postModalLabel">Post Detail</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalContent">
+                    <!-- Content will be loaded here by AJAX -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.gallery-item').on('click', function() {
+                var postId = $(this).data('post-id');
+                $.ajax({
+                    url: '/post/' + postId + '/',
+                    method: 'GET',
+                    success: function(data) {
+                        $('#modalContent').html(data);
+                        $('#postModal').modal('show');
+                    },
+                    error: function() {
+                        alert('An error occurred while fetching the post details.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

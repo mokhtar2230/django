@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Se connecter</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('../../../media/post_images/home_bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            position: relative; /* Ensure body is a positioning context */
+        }
+    
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Ensure container is a positioning context */
+        }
+    
+        .transparent-image {
+            position: absolute;
+            top: 50%; /* Adjust as needed */
+            left: 50%; /* Adjust as needed */
+            transform: translate(-50%, -50%); /* Center the image */
+            max-width: 100%; /* Ensure the image is responsive */
+            z-index: 1; /* Ensure the image appears above other elements */
+        }
+    
+        .login-box {
+            display: flex;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0.9);
+            width: 700px;
+            z-index: 2; /* Ensure the login box appears above the image */
+        }
+    
+        .left-section, .right-section {
+            padding: 40px;
+        }
+    
+        .left-section {
+            width: 400px;
+        }
+    
+        .right-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #f7f7f7;
+            width: 300px;
+            opacity: 0;
+            transform: translateX(100%);
+        }
+    
+        .left-section h2 {
+            margin: 0;
+            margin-bottom: 20px;
+        }
+    
+        .left-section p {
+            margin: 0;
+            margin-bottom: 30px;
+            color: #333;
+        }
+    
+        form input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+    
+        form a {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 1em;
+            margin-bottom: 20px;
+            display: inline-block;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+    
+        form button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 4px;
+            background: #28a745;
+            color: white;
+            font-size: 1.1em;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+    
+        form button:hover {
+            background: #218838;
+        }
+    
+        .right-section img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+    
+        .right-section p {
+            margin: 0;
+            text-align: center;
+            color: #333;
+        }
+    
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+            font-size: 0.9em;
+            z-index: 2;
+        }
+    
+        footer p {
+            margin: 5px 0;
+        }
+        .error-message {
+            color: red;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="transparent-image" src="../../../media/post_images/back.png" alt="">
+        <div class="login-box">
+            <div class="left-section">
+                <h2>Login</h2>
+                <form id="myForm" method="post">
+                    {% csrf_token %}
+                    {% if error_message %}
+                        <p class="error-message">{{ error_message }}</p>
+                    {% endif %}
+                    <input type="email" placeholder="Login" id="email" name="email" required>
+                    <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+            </div>
+            <div class="right-section">
+                <img src="../../../media/post_images/iset.png" alt="ISET Sfax">
+                <p>Institut Supérieur des Etudes Technologiques de Sfax</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.to('.login-box', { opacity: 1, scale: 1, duration: 1.2, ease: 'power2.out' });
+            gsap.to('.right-section', { opacity: 1, x: 0, duration: 1.2, delay: 0.6, ease: 'power2.out' });
+            gsap.to('.left-section h2', { opacity: 1, x: 0, duration: 1.2, delay: 0.8, ease: 'power2.out' });
+            gsap.to('.left-section p', { opacity: 1, x: 0, duration: 1.2, delay: 1.0, ease: 'power2.out' });
+            gsap.to('form input', { opacity: 1, x: 0, duration: 1.2, delay: 1.2, stagger: 0.1, ease: 'power2.out' });
+            gsap.to('form a', { opacity: 1, x: 0, duration: 1.2, delay: 1.6, ease: 'power2.out' });
+            gsap.to('form button', { opacity: 1, x: 0, duration: 1.2, delay: 1.8, ease: 'power2.out' });
+        });
+
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            // Check if there's an error message
+            var errorMessageElement = document.querySelector('.error-message');
+            if(errorMessageElement) {
+                // If error message exists, display an alert with the error message text
+                alert(errorMessageElement.innerText);
+                // Prevent the default form submission
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
